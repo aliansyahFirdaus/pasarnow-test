@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { Container, Row, Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 import Input from "../search/Input";
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
-
-  //   const imgHandler = (type) => {
-  //     return
-  //   };
 
   return (
     <Container>

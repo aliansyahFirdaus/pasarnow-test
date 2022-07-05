@@ -1,0 +1,12 @@
+.header {
+    padding: 0 15px;
+    align-items: center;
+}
+
+.radio {
+    padding: 20px 15px;
+    background-color: rgb(255, 255, 255);
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
