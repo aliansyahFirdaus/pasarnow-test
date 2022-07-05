@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import { Container, Stack } from "react-bootstrap";
-import Input from "../search/Input";
+
+import React, { useState } from "react";
+import Input from "../components/search/Input";
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
@@ -13,6 +14,7 @@ export default function Home() {
       >
         <div>
           <img
+          alt={"test"}
             src={
               isTyping
                 ? "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
