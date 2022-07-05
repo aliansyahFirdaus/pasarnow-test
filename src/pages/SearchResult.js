@@ -1,11 +1,12 @@
 import { Container, Stack } from "react-bootstrap";
 
 import React from "react";
-import Input from "../search/Input";
-import Card from "../UI/Card";
-import ContentGeneral from "../components/content/ContentGeneral";
 import styles from "./SearchResult.module.css";
-import RadioButton from "../UI/RadioButton";
+import RadioButton from "../components/UI/RadioButton";
+
+import GeneralItems from "../components/content/GeneralItem/GeneralItems";
+import ImageItems from "../components/content/ImageItem/ImageItems";
+import Input from "../components/search/Input";
 
 export default function SearchResult() {
   return (
@@ -26,17 +27,8 @@ export default function SearchResult() {
         <RadioButton>News</RadioButton>
       </Stack>
 
-      <Stack>
-        <Card>
-          <ContentGeneral />
-        </Card>
-        <Card>
-          <ContentGeneral />
-        </Card>
-        <Card>
-          <ContentGeneral />
-        </Card>
-      </Stack>
+      {/* <GeneralItems data={""} /> */}
+      <ImageItems data={""} />
     </Container>
   );
 }
