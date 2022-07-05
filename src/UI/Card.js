@@ -1,12 +1,12 @@
-import { Row } from 'react-bootstrap'
+import { Container, Row } from "react-bootstrap";
 
-import React from 'react'
-import styles from "./Card.module.css"
+import React from "react";
+import styles from "./Card.module.css";
 
-export default function Card({children}) {
+export default function Card({ children }) {
   return (
-    <Row className='my-1'>
-      {children}
-    </Row>
-  )
+    <Container fluid>
+      <Row className={styles.card}>{children}</Row>
+    </Container>
+  );
 }

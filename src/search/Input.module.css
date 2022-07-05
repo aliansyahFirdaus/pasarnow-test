@@ -1,47 +1,57 @@
 .input-search {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
 }
 
 .input-search input {
   border-radius: 25px 0 0 25px;
   height: 40px;
   border-right: 0;
+  width: 100%;
 }
 
-.input-search .icon {
+.input-search input:focus {
+  box-shadow: none;
+  border: 1px solid #ced4da;
+  border-right: 0;
+}
+
+.icon {
   position: absolute;
   color: rgb(192, 192, 192);
   padding-left: 15px;
   font-size: 18px;
 }
 
-.input-search .dropdown-menu button {
+.dropdown-menu button {
   height: 40px;
-  background-color: transparent;
+  background-color: white;
   border: 1px solid #ced4da;
   border-left: 0;
   color: rgb(133, 133, 133);
 }
 
-.input-search .dropdown-menu button:hover {
+.dropdown-menu button:hover {
   background-color: #ced4da;
   border: 1px solid #ced4da;
   border-left: 0;
 }
 
-.input-search .dropdown-menu button[aria-expanded="false"] {
+.dropdown-menu button[aria-expanded="false"] {
   border-radius: 0 25px 25px 0;
 }
 
-.input-search .dropdown-menu button[aria-expanded="true"] {
+.dropdown-menu button[aria-expanded="true"] {
   border-radius: 0 25px 0 0;
   background-color: #ced4da;
   border: 1px solid #ced4da;
   box-shadow: none !important;
 }
 
-.input-search .dropdown-menu div {
+.dropdown-menu div {
   color: blue;
   min-width: 5.6rem !important;
   border-radius: 0;
@@ -50,7 +60,3 @@
   border: 0;
   background-color: aliceblue;
 }
-
-/* .focus {
-  padding-left: 40px;
-} */

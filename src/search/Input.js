@@ -19,16 +19,15 @@ export default function Input({ onTyping }) {
 
   useEffect(() => {
     const interval = setTimeout(() => {
-      onTyping(true);
+      onTyping?.(true);
     }, 500);
 
     return () => {
       clearTimeout(interval);
-      onTyping(false);
+      onTyping?.(false);
     };
   }, [keyword]);
 
-  
   return (
     <div className={styles["input-search"]}>
       {!focus && (

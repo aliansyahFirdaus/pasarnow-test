@@ -1,11 +1,14 @@
-import { Container } from "react-bootstrap";
+import { Fragment } from "react";
+
 import Home from "./pages/Home";
+import SearchResult from "./pages/SearchResult";
 
 function App() {
   return (
-    <Container>
-      <Home />
-    </Container>
+    <Fragment>
+      {/* <Home /> */}
+      <SearchResult />
+    </Fragment>
   );
 }
 
