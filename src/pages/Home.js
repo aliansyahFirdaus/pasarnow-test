@@ -1,11 +1,18 @@
 import { Container, Stack } from "react-bootstrap";
 
-import React, { useState } from "react";
-import Input from "../components/Search/Input";
+import React from "react";
+import Search from "../components/Search/Search";
 
-export default function Home() {
-  const [isTyping, setIsTyping] = useState(false);
+export default function Home({
+  changeCategoryHandler,
+  typingHandler,
+  focusHandler,
 
+  keyword,
+  focus,
+  selected,
+  isTyping,
+}) {
   return (
     <Container>
       <Stack
@@ -14,7 +21,7 @@ export default function Home() {
       >
         <div>
           <img
-          alt={"test"}
+            alt={"test"}
             src={
               isTyping
                 ? "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
@@ -23,7 +30,14 @@ export default function Home() {
             width={180}
           />
         </div>
-        <Input onTyping={setIsTyping} />
+        <Search
+          typingHandler={typingHandler}
+          focusHandler={focusHandler}
+          changeCategoryHandler={changeCategoryHandler}
+          keyword={keyword}
+          focus={focus}
+          selected={selected}
+        />
       </Stack>
     </Container>
   );

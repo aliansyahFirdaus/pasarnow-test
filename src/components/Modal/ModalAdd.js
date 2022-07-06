@@ -9,14 +9,7 @@ export default function ModalAdd({ show, hide }) {
 
   const addNews = (e) => {
     e.preventDefault();
-    
-    console.log(
-      titleRef.current.value,
-      sourceRef.current.value,
-      urlRef.current.value
-    );
-
-    hide()
+    hide();
   };
 
   return (
