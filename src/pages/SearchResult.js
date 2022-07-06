@@ -8,22 +8,20 @@ import HeaderSearch from "../components/HeaderSearch/HeaderSearch";
 
 export default function SearchResult({
   typingHandler,
-  focusHandler,
   changeCategoryHandler,
   scrollingHandler,
   selectedHandler,
 
   keyword,
-  focus,
   selected,
 }) {
   const navigate = useNavigate();
 
-  const navigatePage = (e) => {
-    const pathGenerate =
+  const radioButtonHandler = (e) => {
+    const pathLowerCase =
       e.target.value[0].toLowerCase() + e.target.value.slice(1);
 
-    navigate(pathGenerate);
+    navigate(`${pathLowerCase}?search=${keyword}`);
     selectedHandler(e.target.value);
   };
 
@@ -36,10 +34,8 @@ export default function SearchResult({
     >
       <HeaderSearch
         typingHandler={typingHandler}
-        focusHandler={focusHandler}
         changeCategoryHandler={changeCategoryHandler}
         keyword={keyword}
-        focus={focus}
         selected={selected}
       />
 
@@ -50,7 +46,7 @@ export default function SearchResult({
       >
         <RadioButton
           selected={selected}
-          onSelect={navigatePage}
+          onSelect={radioButtonHandler}
           value="All"
           goToPath="all"
         >
@@ -58,7 +54,7 @@ export default function SearchResult({
         </RadioButton>
         <RadioButton
           selected={selected}
-          onSelect={navigatePage}
+          onSelect={radioButtonHandler}
           value="Image"
           goToPath="images"
         >
@@ -66,7 +62,7 @@ export default function SearchResult({
         </RadioButton>
         <RadioButton
           selected={selected}
-          onSelect={navigatePage}
+          onSelect={radioButtonHandler}
           value="News"
           goToPath="news"
         >

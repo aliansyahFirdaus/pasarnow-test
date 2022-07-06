@@ -1,25 +1,28 @@
 import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Search.module.css";
 
 export default function Search({
   typingHandler,
-  keyword,
-  focusHandler,
   changeCategoryHandler,
-  focus,
+
+  keyword,
   selected,
 }) {
   const navigate = useNavigate();
+  const { search } = useParams();
+
+  const [focus, setFocus] = useState(false);
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();
-    navigate(
-      `/search/${selected[0].toLowerCase() + selected.slice(1)}?${keyword}`
-    );
+    const pathLowerCase = selected[0].toLowerCase() + selected.slice(1);
+    navigate(`/search/${pathLowerCase}?search=${keyword}`);
   };
+
+  const focusHandler = (val) => setFocus(val);
 
   return (
     <div className={styles["input-search"]}>
@@ -29,7 +32,7 @@ export default function Search({
       <Stack direction="horizontal">
         <Form onSubmit={searchSubmitHandler}>
           <Form.Control
-            value={keyword}
+            value={keyword || search}
             type="text"
             className={!focus ? styles.focus : ""}
             onFocus={() => focusHandler(true)}

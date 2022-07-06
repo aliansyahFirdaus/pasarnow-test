@@ -6,10 +6,8 @@ import Search from "../components/Search/Search";
 export default function Home({
   changeCategoryHandler,
   typingHandler,
-  focusHandler,
 
   keyword,
-  focus,
   selected,
   isTyping,
 }) {
@@ -32,10 +30,8 @@ export default function Home({
         </div>
         <Search
           typingHandler={typingHandler}
-          focusHandler={focusHandler}
           changeCategoryHandler={changeCategoryHandler}
           keyword={keyword}
-          focus={focus}
           selected={selected}
         />
       </Stack>

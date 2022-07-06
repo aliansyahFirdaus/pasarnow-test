@@ -11,13 +11,11 @@ function App() {
   const [selected, setSelected] = useState("All");
   const [keyword, setKeyword] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [focus, setFocus] = useState(false);
   const [isScroll, setIsScroll] = useState(0);
   const [hideBtn, setHideBtn] = useState(false);
 
   const typingHandler = (e) => setKeyword(e.target.value);
   const changeCategoryHandler = (e) => setSelected(e.target.innerText);
-  const focusHandler = (val) => setFocus(val);
   const scrollingHandler = () => setIsScroll((prev) => prev + 1);
   const selectedHandler = (value) => setSelected(value);
 
@@ -51,11 +49,9 @@ function App() {
           element={
             <Home
               typingHandler={typingHandler}
-              focusHandler={focusHandler}
               changeCategoryHandler={changeCategoryHandler}
               keyword={keyword}
               selected={selected}
-              focus={focus}
               isTyping={isTyping}
             />
           }
@@ -65,13 +61,11 @@ function App() {
           element={
             <SearchResult
               typingHandler={typingHandler}
-              focusHandler={focusHandler}
               changeCategoryHandler={changeCategoryHandler}
               selectedHandler={selectedHandler}
               scrollingHandler={scrollingHandler}
               keyword={keyword}
               selected={selected}
-              focus={focus}
             />
           }
         >

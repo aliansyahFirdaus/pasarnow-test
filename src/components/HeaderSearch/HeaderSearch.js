@@ -6,11 +6,9 @@ import styles from "./HeaderSearch.module.css";
 
 export default function HeaderSearch({
   typingHandler,
-  focusHandler,
   changeCategoryHandler,
 
   keyword,
-  focus,
   selected,
 }) {
   return (
@@ -23,10 +21,8 @@ export default function HeaderSearch({
       </div>
       <Search
         typingHandler={typingHandler}
-        focusHandler={focusHandler}
         changeCategoryHandler={changeCategoryHandler}
         keyword={keyword}
-        focus={focus}
         selected={selected}
       />
     </Stack>
