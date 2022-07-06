@@ -1,0 +1,16 @@
+.header {
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.profile {
+  background-color: rgb(94, 94, 94);
+  color: white;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+}

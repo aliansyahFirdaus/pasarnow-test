@@ -50,6 +50,7 @@ function App() {
             <Home
               typingHandler={typingHandler}
               changeCategoryHandler={changeCategoryHandler}
+              selectedHandler={selectedHandler}
               keyword={keyword}
               selected={selected}
               isTyping={isTyping}

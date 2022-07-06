@@ -1,5 +1,5 @@
+import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
 
 import React, { useState } from "react";
 import styles from "./Search.module.css";
@@ -12,7 +12,6 @@ export default function Search({
   selected,
 }) {
   const navigate = useNavigate();
-  const { search } = useParams();
 
   const [focus, setFocus] = useState(false);
 
@@ -32,7 +31,7 @@ export default function Search({
       <Stack direction="horizontal">
         <Form onSubmit={searchSubmitHandler}>
           <Form.Control
-            value={keyword || search}
+            value={keyword}
             type="text"
             className={!focus ? styles.focus : ""}
             onFocus={() => focusHandler(true)}

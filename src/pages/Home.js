@@ -2,30 +2,37 @@ import { Container, Stack } from "react-bootstrap";
 
 import React from "react";
 import Search from "../components/Search/Search";
+import Header from "../components/Header/Header";
+import styles from "./Home.module.css"
 
 export default function Home({
   changeCategoryHandler,
   typingHandler,
+  selectedHandler,
 
   keyword,
   selected,
   isTyping,
 }) {
   return (
-    <Container>
+    <Container className="vh-100">
+      <Header
+        selected={selected}
+        keyword={keyword}
+        selectedHandler={selectedHandler}
+      />
       <Stack
-        className="vh-100 justify-content-center align-items-center"
+        className="text-center mt-5"
         gap={4}
       >
-        <div>
+        <div className={styles.logo}>
           <img
             alt={"test"}
             src={
               isTyping
-                ? "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
+                ? "https://i.ibb.co/0XGQxtv/ezgif-com-gif-maker.jpg"
                 : "https://lifeofahomeschoolersite.files.wordpress.com/2018/02/g-dots.gif"
             }
-            width={180}
           />
         </div>
         <Search
