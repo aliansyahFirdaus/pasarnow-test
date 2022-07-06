@@ -1,0 +1,38 @@
+.content h2,
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.content {
+  width: 100px;
+  word-wrap: break-word;
+}
+
+.content span {
+  color: rgb(170, 170, 170);
+}
+
+.content .title {
+  color: #2367d4 !important;
+  font-size: 19px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.content .link {
+  color: #747474 !important;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+/* .wrapper:hover {
+  background-color: #616469;
+} */
+
+.wrapper img {
+  border-radius: 10px;
+  width: 105px;
+  align-self: flex-start;
+}
