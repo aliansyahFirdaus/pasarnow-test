@@ -1,4 +1,5 @@
 import { Container, Stack } from "react-bootstrap";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 import styles from "./SearchResult.module.css";
@@ -10,12 +11,18 @@ import NewsItems from "../components/Content/NewsItem/NewsItems";
 import ImageItems from "../components/Content/ImageItem/ImageItems";
 
 export default function SearchResult() {
+  const navigate = useNavigate();
+
   const [hideBtn, setHideBtn] = useState(false);
   const [isScroll, setIsScroll] = useState(0);
-  const [selected, setSelected] = useState("allcontent");
+  const [selected, setSelected] = useState("all");
 
   const scrollingHandler = () => setIsScroll((prev) => prev + 1);
-  const selectedHandler = (e) => setSelected(e.target.value);
+
+  const selectedHandler = (e) => {
+    setSelected(e.target.value);
+    navigate(e.target.value);
+  };
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -52,30 +59,35 @@ export default function SearchResult() {
       >
         <RadioButton
           selected={selected}
+          value="all"
           onSelect={selectedHandler}
-          value="allcontent"
+          goToPath="all"
         >
           All
         </RadioButton>
         <RadioButton
           selected={selected}
-          onSelect={selectedHandler}
           value="image"
+          onSelect={selectedHandler}
+          goToPath="images"
         >
           Image
         </RadioButton>
         <RadioButton
           selected={selected}
-          onSelect={selectedHandler}
           value="news"
+          onSelect={selectedHandler}
+          goToPath="news"
         >
           News
         </RadioButton>
       </Stack>
 
-      <GeneralItems data={""} />
+      <Outlet />
+
+      {/* <GeneralItems data={""} />
       <ImageItems data={""} />
-      <NewsItems data={""} onScrolling={hideBtn} />
+      <NewsItems data={""} onScrolling={hideBtn} /> */}
     </Container>
   );
 }
