@@ -6,7 +6,7 @@ import styles from "./ContentGeneralItem.module.css";
 export default function ContentGeneralItem({ content }) {
   return (
     <Stack gap={3} className={styles.content}>
-      <a href={link} className={styles.link} target="_blank">
+      <a href={"#"} className={styles.link} target="_blank">
         <i className="fa-solid fa-globe me-2" /> https://facebook.com
       </a>
       <a className={styles.title} href="#">

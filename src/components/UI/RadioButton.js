@@ -1,15 +1,21 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+
+import { ToggleButton } from "react-bootstrap";
 import styles from "./RadioButton.modules.css";
 
-export default function RadioButton({ children }) {
+export default function RadioButton({ children, selected, onSelect, value }) {
   return (
-    <Button
+    <ToggleButton
+      onChange={onSelect}
+      checked={selected === value}
+      id={value}
+      value={value}
       size="sm"
+      type="radio"
       className="rounded-pill px-3 flex-fill"
       variant="outline-secondary"
     >
       {children}
-    </Button>
+    </ToggleButton>
   );
 }

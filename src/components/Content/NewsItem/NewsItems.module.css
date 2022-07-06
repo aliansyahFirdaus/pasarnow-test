@@ -1,0 +1,18 @@
+.add-btn {
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+  z-index: 9999px;
+  position: fixed;
+}
+
+.add-btn button {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  border: 5px solid white;
+}
+
+/* .add-btn button:focus {
+  transform: rotate(45deg);
+} */

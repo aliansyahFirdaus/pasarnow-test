@@ -1,7 +1,7 @@
 import { Container, Stack } from "react-bootstrap";
 
 import React, { useState } from "react";
-import Input from "../components/search/Input";
+import Input from "../components/Search/Input";
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
