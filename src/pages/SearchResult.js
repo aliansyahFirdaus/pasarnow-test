@@ -1,32 +1,31 @@
 import { Container, Stack } from "react-bootstrap";
+import { Outlet, useNavigate } from "react-router-dom";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./SearchResult.module.css";
 import RadioButton from "../components/UI/RadioButton";
-import Input from "../components/Search/Input";
+import HeaderSearch from "../components/HeaderSearch/HeaderSearch";
 
-import GeneralItems from "../components/Content/GeneralItem/GeneralItems";
-import NewsItems from "../components/Content/NewsItem/NewsItems";
-import ImageItems from "../components/Content/ImageItem/ImageItems";
+export default function SearchResult({
+  typingHandler,
+  focusHandler,
+  changeCategoryHandler,
+  scrollingHandler,
+  selectedHandler,
 
-export default function SearchResult() {
-  const [hideBtn, setHideBtn] = useState(false);
-  const [isScroll, setIsScroll] = useState(0);
-  const [selected, setSelected] = useState("allcontent");
+  keyword,
+  focus,
+  selected,
+}) {
+  const navigate = useNavigate();
 
-  const scrollingHandler = () => setIsScroll((prev) => prev + 1);
-  const selectedHandler = (e) => setSelected(e.target.value);
+  const navigatePage = (e) => {
+    const pathGenerate =
+      e.target.value[0].toLowerCase() + e.target.value.slice(1);
 
-  useEffect(() => {
-    const interval = setTimeout(() => {
-      setHideBtn(false);
-    }, 700);
-
-    return () => {
-      clearInterval(interval);
-      setHideBtn(true);
-    };
-  }, [isScroll]);
+    navigate(pathGenerate);
+    selectedHandler(e.target.value);
+  };
 
   return (
     <Container
@@ -35,15 +34,14 @@ export default function SearchResult() {
       style={{ overflow: "scroll" }}
       onScroll={scrollingHandler}
     >
-      <Stack gap={3} className={styles.header}>
-        <div>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
-            width={110}
-          />
-        </div>
-        <Input />
-      </Stack>
+      <HeaderSearch
+        typingHandler={typingHandler}
+        focusHandler={focusHandler}
+        changeCategoryHandler={changeCategoryHandler}
+        keyword={keyword}
+        focus={focus}
+        selected={selected}
+      />
 
       <Stack
         direction="horizontal"
@@ -52,30 +50,31 @@ export default function SearchResult() {
       >
         <RadioButton
           selected={selected}
-          onSelect={selectedHandler}
-          value="allcontent"
+          onSelect={navigatePage}
+          value="All"
+          goToPath="all"
         >
           All
         </RadioButton>
         <RadioButton
           selected={selected}
-          onSelect={selectedHandler}
-          value="image"
+          onSelect={navigatePage}
+          value="Image"
+          goToPath="images"
         >
           Image
         </RadioButton>
         <RadioButton
           selected={selected}
-          onSelect={selectedHandler}
-          value="news"
+          onSelect={navigatePage}
+          value="News"
+          goToPath="news"
         >
           News
         </RadioButton>
       </Stack>
 
-      <GeneralItems data={""} />
-      <ImageItems data={""} />
-      <NewsItems data={""} onScrolling={hideBtn} />
+      <Outlet />
     </Container>
   );
 }

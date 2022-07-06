@@ -6,7 +6,7 @@ import ContentNewsItem from "./ContentNewsItem";
 import styles from "./NewsItems.module.css";
 import ModalAdd from "../../Modal/ModalAdd";
 
-export default function NewsItems({ data, onScrolling }) {
+export default function NewsItems({ data, hideBtn }) {
   const [showModal, setShowModal] = useState(false);
 
   const showModalHandler = () => setShowModal(true);
@@ -30,7 +30,7 @@ export default function NewsItems({ data, onScrolling }) {
         <ContentNewsItem content={""} />
       </Card>
 
-      <div className={`${onScrolling ? "d-none" : ""} ${styles["add-btn"]}`}>
+      <div className={`${hideBtn ? "d-none" : ""} ${styles["add-btn"]}`}>
         <Button size="lg" onClick={showModalHandler}>
           +
         </Button>
