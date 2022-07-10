@@ -14,21 +14,11 @@ export default function NewsItems({ data, hideBtn }) {
 
   return (
     <Stack>
-      <Card>
-        <ContentNewsItem content={""} />
-      </Card>
-      <Card>
-        <ContentNewsItem content={""} />
-      </Card>
-      <Card>
-        <ContentNewsItem content={""} />
-      </Card>
-      <Card>
-        <ContentNewsItem content={""} />
-      </Card>
-      <Card>
-        <ContentNewsItem content={""} />
-      </Card>
+      {data.map((content) => (
+        <Card>
+          <ContentNewsItem content={content} />
+        </Card>
+      ))}
 
       <div className={`${hideBtn ? "d-none" : ""} ${styles["add-btn"]}`}>
         <Button size="lg" onClick={showModalHandler}>

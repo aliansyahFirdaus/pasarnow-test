@@ -53,7 +53,7 @@ function App() {
             path="news"
             element={
               res.status === "success" && (
-                <NewsItems data={""} hideBtn={hideBtn} />
+                <NewsItems data={news.entries} hideBtn={hideBtn} />
               )
             }
           />
