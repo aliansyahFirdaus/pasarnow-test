@@ -4,12 +4,14 @@ import React from "react";
 import Card from "../../UI/Card";
 import ContentGeneralItem from "./ContentGeneralItem";
 
-export default function GeneralItems({data}) {
+export default function GeneralItems({ data }) {
   return (
     <Stack>
-      <Card>
-        <ContentGeneralItem content={""} />
-      </Card>
+      {data.map((content) => (
+        <Card>
+          <ContentGeneralItem content={content} />
+        </Card>
+      ))}
     </Stack>
   );
 }

@@ -4,18 +4,17 @@ import React from "react";
 import styles from "./ContentGeneralItem.module.css";
 
 export default function ContentGeneralItem({ content }) {
+  const linkGenerate = (link) => link.split("/")[2];
+
   return (
     <Stack gap={3} className={styles.content}>
       <a href={"#"} className={styles.link} target="_blank">
-        <i className="fa-solid fa-globe me-2" /> https://facebook.com
+        <i className="fa-solid fa-globe me-2" /> {linkGenerate(content.link)}
       </a>
       <a className={styles.title} href="#">
-        Aliansyah Firdaus - Universitas Pamulang
+        {content.title}
       </a>
-      <p>
-        Asda Stores Ltd. is a British supermarket chain. It is headquartered in
-        Leeds, England. ... The company was founded in 1949 .
-      </p>
+      <p>{content.description}</p>
     </Stack>
   );
 }

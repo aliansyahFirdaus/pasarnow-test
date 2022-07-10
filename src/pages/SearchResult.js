@@ -7,15 +7,7 @@ import Search from "../components/Search/Search";
 import HeaderSearch from "../components/Header/Header";
 import CategoryButton from "../components/CategoryButton/CategoryButton";
 
-export default function SearchResult({
-  changeCategoryHandler,
-  typingHandler,
-  selectedHandler,
-  scrollingHandler,
-
-  keyword,
-  selected,
-}) {
+export default function SearchResult({ scrollingHandler }) {
   return (
     <Container
       fluid
@@ -24,27 +16,12 @@ export default function SearchResult({
       onScroll={scrollingHandler}
     >
       <Stack>
-        <HeaderSearch
-          selected={selected}
-          keyword={keyword}
-          selectedHandler={selectedHandler}
-          logo={true}
-        />
-        <Search
-          typingHandler={typingHandler}
-          changeCategoryHandler={changeCategoryHandler}
-          keyword={keyword}
-          selected={selected}
-        />
+        <HeaderSearch logo={true} />
+        <Search />
       </Stack>
 
       <div className={styles.radio}>
-        <CategoryButton
-          selected={selected}
-          keyword={keyword}
-          selectedHandler={selectedHandler}
-          link={true}
-        />
+        <CategoryButton link={true} />
       </div>
 
       <Outlet />

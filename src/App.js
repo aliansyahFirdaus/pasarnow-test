@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import Home from "./pages/Home";
 import SearchResult from "./pages/SearchResult";
@@ -8,27 +9,12 @@ import ImageItems from "./components/Content/ImageItem/ImageItems";
 import NewsItems from "./components/Content/NewsItem/NewsItems";
 
 function App() {
-  const [selected, setSelected] = useState("All");
-  const [keyword, setKeyword] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [isScroll, setIsScroll] = useState(0);
+  const [isScroll, setIsScroll] = useState(false);
   const [hideBtn, setHideBtn] = useState(false);
 
-  const typingHandler = (e) => setKeyword(e.target.value);
-  const changeCategoryHandler = (e) => setSelected(e.target.innerText);
-  const scrollingHandler = () => setIsScroll((prev) => prev + 1);
-  const selectedHandler = (value) => setSelected(value);
+  const { site, image, news, res } = useSelector((state) => state.all);
 
-  useEffect(() => {
-    const interval = setTimeout(() => {
-      setIsTyping(true);
-    }, 500);
-
-    return () => {
-      clearTimeout(interval);
-      setIsTyping(false);
-    };
-  }, [keyword]);
+  const scrollingHandler = () => setIsScroll(true);
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -44,37 +30,32 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              typingHandler={typingHandler}
-              changeCategoryHandler={changeCategoryHandler}
-              selectedHandler={selectedHandler}
-              keyword={keyword}
-              selected={selected}
-              isTyping={isTyping}
-            />
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route
           path="/search"
-          element={
-            <SearchResult
-              typingHandler={typingHandler}
-              changeCategoryHandler={changeCategoryHandler}
-              selectedHandler={selectedHandler}
-              scrollingHandler={scrollingHandler}
-              keyword={keyword}
-              selected={selected}
-            />
-          }
+          element={<SearchResult scrollingHandler={scrollingHandler} />}
         >
-          <Route path="all" element={<GeneralItems data={""} />} />
-          <Route path="image" element={<ImageItems data={""} />} />
+          <Route
+            path="search"
+            element={
+              res.status === "success" && <GeneralItems data={site.results} />
+            }
+          />
+          <Route
+            path="image"
+            element={
+              res.status === "success" && (
+                <ImageItems data={image.image_results} />
+              )
+            }
+          />
           <Route
             path="news"
-            element={<NewsItems data={""} hideBtn={hideBtn} />}
+            element={
+              res.status === "success" && (
+                <NewsItems data={""} hideBtn={hideBtn} />
+              )
+            }
           />
         </Route>
       </Routes>

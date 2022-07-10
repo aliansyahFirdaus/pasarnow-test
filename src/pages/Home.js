@@ -1,33 +1,20 @@
 import { Container, Stack } from "react-bootstrap";
 
-import React from "react";
+import React, { useState } from "react";
 import Search from "../components/Search/Search";
 import Header from "../components/Header/Header";
-import styles from "./Home.module.css"
+import styles from "./Home.module.css";
 
-export default function Home({
-  changeCategoryHandler,
-  typingHandler,
-  selectedHandler,
+export default function Home() {
+  const [isTyping, setIsTyping] = useState(false);
 
-  keyword,
-  selected,
-  isTyping,
-}) {
   return (
     <Container className="vh-100">
-      <Header
-        selected={selected}
-        keyword={keyword}
-        selectedHandler={selectedHandler}
-      />
-      <Stack
-        className="text-center mt-5"
-        gap={4}
-      >
+      <Header />
+      <Stack className="text-center mt-5" gap={4}>
         <div className={styles.logo}>
           <img
-            alt={"test"}
+            alt={"google-logo"}
             src={
               isTyping
                 ? "https://i.ibb.co/0XGQxtv/ezgif-com-gif-maker.jpg"
@@ -35,12 +22,7 @@ export default function Home({
             }
           />
         </div>
-        <Search
-          typingHandler={typingHandler}
-          changeCategoryHandler={changeCategoryHandler}
-          keyword={keyword}
-          selected={selected}
-        />
+        <Search setIsTyping={setIsTyping} />
       </Stack>
     </Container>
   );

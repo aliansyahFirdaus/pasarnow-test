@@ -1,13 +1,16 @@
 import React from "react";
 
 import { ToggleButton } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import styles from "./RadioButton.modules.css";
 
-export default function RadioButton({ children, selected, onSelect, value }) {
+export default function RadioButton({ children, onSelect, value }) {
+  const { category } = useSelector((state) => state.all);
+
   return (
     <ToggleButton
       onChange={onSelect}
-      checked={selected === value}
+      checked={category === value}
       id={value}
       value={value}
       size="sm"
