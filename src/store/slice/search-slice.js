@@ -5,26 +5,18 @@ const searchSlice = createSlice({
   initialState: {
     keyword: "",
     site: [],
-    news: [],
     image: [],
-    category: "Search",
-    res: { status: null, msg: "" },
+    category: "Search"
   },
   reducers: {
     getSiteResult(state, action) {
       state.site = action.payload;
-    },
-    getNewsResult(state, action) {
-      state.news = action.payload;
     },
     getImageResult(state, action) {
       state.image = action.payload;
     },
     saveKeyword(state, action) {
       state.keyword = action.payload;
-    },
-    changeStatus(state, action) {
-      state.res = { status: action.payload.status, msg: action.payload.msg };
     },
     changeCategory(state, action) {
       state.category = action.payload;

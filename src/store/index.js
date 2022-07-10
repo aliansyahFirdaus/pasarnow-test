@@ -1,9 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import saerchAllReducer from "./slice/all-slice";
+import searchReducer from "./slice/search-slice";
+import statusReducer from "./slice/status-slice";
+import newsReducer from "./slice/news-slice";
 
 const store = configureStore({
-  reducer: { all: saerchAllReducer },
+  reducer: {
+    search: searchReducer,
+    status: statusReducer,
+    news: newsReducer,
+  },
 });
 
 export default store;

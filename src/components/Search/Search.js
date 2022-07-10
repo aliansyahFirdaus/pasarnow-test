@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
-import { searchAction } from "../../store/slice/all-slice";
+import { searchAction } from "../../store/slice/search-slice";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSearchData } from "../../store/action/all-search-action";
+import { fetchSearchData } from "../../store/action/search-action";
 
 import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
 
 export default function Search({ setIsTyping }) {
-  const { category, keyword } = useSelector((state) => state.all);
+  const { category, keyword } = useSelector((state) => state.search);
 
   const [focus, setFocus] = useState(false);
   const [inputKeyword, setInputKeyword] = useState(keyword);

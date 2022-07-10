@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import styles from "./RadioButton.modules.css";
 
 export default function RadioButton({ children, onSelect, value }) {
-  const { category } = useSelector((state) => state.all);
+  const { category } = useSelector((state) => state.search);
 
   return (
     <ToggleButton

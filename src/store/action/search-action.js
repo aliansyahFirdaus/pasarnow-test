@@ -1,9 +1,9 @@
-import { searchAction } from "../slice/all-slice";
+import { searchAction } from "../slice/search-slice";
+import { statusAction } from "../slice/status-slice";
 
 export const fetchSearchData = (keyword, category) => {
-  console.log(category)
   return (dispatch) => {
-    dispatch(searchAction.changeStatus({ status: "pending", msg: "wait..." }));
+    dispatch(statusAction.changeStatus({ status: "pending", msg: "wait..." }));
     fetch(
       `https://google-search3.p.rapidapi.com/api/v1/${category}/q=${keyword}`,
       {
@@ -20,12 +20,11 @@ export const fetchSearchData = (keyword, category) => {
       .then((data) => {
         if (category === "search") dispatch(searchAction.getSiteResult(data));
         if (category === "image") dispatch(searchAction.getImageResult(data));
-        if (category === "news") dispatch(searchAction.getNewsResult(data));
-        dispatch(searchAction.changeStatus({ status: "success", msg: "done" }));
+        dispatch(statusAction.changeStatus({ status: "success", msg: "done" }));
       })
       .catch((err) => {
         dispatch(
-          searchAction.changeStatus({ status: "fail", msg: err.message })
+          statusAction.changeStatus({ status: "fail", msg: err.message })
         );
       });
   };

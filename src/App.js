@@ -12,7 +12,11 @@ function App() {
   const [isScroll, setIsScroll] = useState(false);
   const [hideBtn, setHideBtn] = useState(false);
 
-  const { site, image, news, res } = useSelector((state) => state.all);
+  const { site, image } = useSelector((state) => state.search);
+  const { res } = useSelector((state) => state.status);
+  const { news } = useSelector((state) => state.news);
+
+  // console.log(news, "==== 19/App.js")
 
   const scrollingHandler = () => setIsScroll(true);
 
@@ -53,7 +57,7 @@ function App() {
             path="news"
             element={
               res.status === "success" && (
-                <NewsItems data={news.entries} hideBtn={hideBtn} />
+                <NewsItems data={news} hideBtn={hideBtn} />
               )
             }
           />
