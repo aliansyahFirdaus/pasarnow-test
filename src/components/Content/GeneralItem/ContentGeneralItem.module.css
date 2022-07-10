@@ -1,0 +1,29 @@
+.content h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.content span {
+  color: rgb(170, 170, 170);
+}
+
+.content p {
+  width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title {
+  color: #2367d4 !important;
+  font-size: 24px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link {
+  color: #747474 !important;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+}
