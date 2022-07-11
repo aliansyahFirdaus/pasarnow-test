@@ -3,6 +3,7 @@ import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
 import { searchAction } from "../../store/slice/search-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSearchData } from "../../store/action/search-action";
+import { fetchNews } from "../../store/action/news-action";
 
 import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
@@ -23,7 +24,11 @@ export default function Search({ setIsTyping }) {
     if (!inputKeyword) return;
 
     dispatch(searchAction.saveKeyword(inputKeyword));
-    dispatch(fetchSearchData(inputKeyword, pathLowerCase));
+
+    pathLowerCase === "news"
+      ? dispatch(fetchNews(inputKeyword))
+      : dispatch(fetchSearchData(inputKeyword, pathLowerCase));
+
     navigate(`/search/${pathLowerCase}?search=${inputKeyword}`);
   };
 

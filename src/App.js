@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNews } from "./store/action/news-action";
+import { fetchSearchData } from "./store/action/search-action";
 
 import Home from "./pages/Home";
 import SearchResult from "./pages/SearchResult";
@@ -8,17 +10,20 @@ import GeneralItems from "./components/Content/GeneralItem/GeneralItems";
 import ImageItems from "./components/Content/ImageItem/ImageItems";
 import NewsItems from "./components/Content/NewsItem/NewsItems";
 
+let initial = true;
+
 function App() {
   const [isScroll, setIsScroll] = useState(false);
   const [hideBtn, setHideBtn] = useState(false);
 
-  const { site, image } = useSelector((state) => state.search);
+  const { site, image, category, keyword } = useSelector(
+    (state) => state.search
+  );
   const { res } = useSelector((state) => state.status);
   const { news } = useSelector((state) => state.news);
 
-  // console.log(news, "==== 19/App.js")
-
   const scrollingHandler = () => setIsScroll(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -30,6 +35,24 @@ function App() {
       setHideBtn(true);
     };
   }, [isScroll]);
+
+  useEffect(() => {
+    if (initial) {
+      initial = false;
+      return;
+    }
+
+    const pathLowerCase = category[0].toLowerCase() + category.slice(1);
+
+    console.log(keyword, category, res, "======");
+
+    if (pathLowerCase === "news") {
+      if (news.length === 0) dispatch(fetchNews(keyword));
+    } else {
+      if (site.length === 0 || image.length === 0)
+        dispatch(fetchSearchData(keyword, pathLowerCase));
+    }
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
