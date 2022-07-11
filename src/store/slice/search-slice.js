@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const searchSlice = createSlice({
   name: "search-slice",
   initialState: {
-    keyword: "",
     site: [],
     image: [],
     category: "Search"

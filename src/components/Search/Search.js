@@ -7,15 +7,17 @@ import { fetchNews } from "../../store/action/news-action";
 
 import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
+import useQuery from "../../hooks/useQuery";
 
 export default function Search({ setIsTyping }) {
-  const { category, keyword } = useSelector((state) => state.search);
-
-  const [focus, setFocus] = useState(false);
-  const [inputKeyword, setInputKeyword] = useState(keyword);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const query = useQuery()
+
+  const { category } = useSelector((state) => state.search);
+  
+  const [focus, setFocus] = useState(false);
+  const [inputKeyword, setInputKeyword] = useState(query.get("search"));
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();

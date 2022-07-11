@@ -6,12 +6,18 @@ export const fetchNews = (keyword) => {
     //fetch from API
     dispatch(statusAction.changeStatus({ status: "pending", msg: "wait..." }));
     fetch(`https://google-search3.p.rapidapi.com/api/v1/news/q=${keyword}`, {
+      // headers: {
+      //   "X-User-Agent": "desktop",
+      //   "X-Proxy-Location": "US",
+      //   "X-RapidAPI-Key": "4f714d2c2fmsh61888d51410a862p1ba231jsnf46d052e9373",
+      //   "X-RapidAPI-Host": "google-search3.p.rapidapi.com",
+      // },
       headers: {
-        "X-User-Agent": "desktop",
-        "X-Proxy-Location": "US",
-        "X-RapidAPI-Key": "4f714d2c2fmsh61888d51410a862p1ba231jsnf46d052e9373",
-        "X-RapidAPI-Host": "google-search3.p.rapidapi.com",
-      },
+        'X-User-Agent': 'desktop',
+        'X-Proxy-Location': 'US',
+        'X-RapidAPI-Key': '9f2d6e1f8dmsh7b75a74a06991ecp1d7ddejsnca7556e37841',
+        'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
+      }
     })
       .then((res) => res.json())
 
