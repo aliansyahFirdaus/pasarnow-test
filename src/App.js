@@ -18,9 +18,7 @@ function App() {
   const [isScroll, setIsScroll] = useState(false);
   const [hideBtn, setHideBtn] = useState(false);
 
-  const { site, image, category } = useSelector(
-    (state) => state.search
-  );
+  const { site, image, category } = useSelector((state) => state.search);
   const { res } = useSelector((state) => state.status);
   const { news } = useSelector((state) => state.news);
 
