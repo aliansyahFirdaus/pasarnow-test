@@ -40,17 +40,17 @@ export default function CategoryButton({ link }) {
         value="Search"
         goToPath="search"
       >
-        Search
+        <i class="fa-solid fa-magnifying-glass me-2" /> Search
       </RadioButton>
       <RadioButton
         onSelect={radioButtonHandler}
         value="Image"
         goToPath="images"
       >
-        Image
+        <i class="fa-solid fa-images me-2" /> Image
       </RadioButton>
       <RadioButton onSelect={radioButtonHandler} value="News" goToPath="news">
-        News
+      <i class="fa-solid fa-newspaper me-2" /> News
       </RadioButton>
     </Stack>
   );

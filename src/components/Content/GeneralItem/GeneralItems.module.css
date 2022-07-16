@@ -1,0 +1,55 @@
+.image-carousel {
+  overflow-x: scroll;
+  padding: 15px 0 15px 15px;
+}
+
+.image-carousel::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.image-carousel img {
+  height: 150px;
+}
+
+.image-carousel img:first-child {
+  border-radius: 20px 0 0 20px;
+}
+
+.image-carousel img:last-child {
+  border-radius: 0 20px 20px 0;
+}
+
+.lihat-semua {
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.lihat-semua p {
+  font-size: 14px;
+  text-align: center;
+  width: 100px;
+  font-weight: 500;
+  color: rgb(116, 116, 116);
+}
+
+.lihat-semua .icon {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: rgb(116, 116, 116);
+  border: 0;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .image-carousel img {
+    height: 190px;
+  }
+}

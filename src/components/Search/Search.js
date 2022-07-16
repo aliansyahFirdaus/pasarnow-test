@@ -64,7 +64,7 @@ export default function Search({ setIsTyping }) {
         <Form onSubmit={searchSubmitHandler}>
           <Form.Control
             value={inputKeyword}
-            type="text"
+            type="search"
             className={styles.focus}
             // onFocus={() => focusHandler(true)}
             // onBlur={() => focusHandler(false)}

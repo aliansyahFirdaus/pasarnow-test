@@ -8,6 +8,8 @@
 .radio input[type="radio"]:checked + label {
   border-bottom: 2px solid black !important;
   background-color: transparent !important;
+  font-weight: 800 !important;
+  color: black !important;
 }
 
 @media (min-width: 768px) {

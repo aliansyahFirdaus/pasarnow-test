@@ -13,7 +13,7 @@ export default function ContentNewsItem({ content }) {
     <Stack direction="horizontal" gap={3} className={styles.wrapper}>
       <Stack gap={3} className={styles.content}>
         <a href={content.link || "#"} className={styles.link} target="_blank">
-          <i class="fa-solid fa-newspaper me-2" /> {content.source}
+          <i className="fa-solid fa-newspaper me-2" /> {content.source}
         </a>
         <a href={"#"} className={styles.title}>
           {content.title}
