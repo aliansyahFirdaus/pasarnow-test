@@ -33,12 +33,16 @@ p {
   text-decoration: none;
 }
 
-/* .wrapper:hover {
-  background-color: #616469;
-} */
-
 .wrapper img {
   border-radius: 10px;
   width: 105px;
   align-self: flex-start;
+}
+
+@media (min-width: 768px) {  
+  .content .title {
+    width: 480px;
+    max-width: 500px;
+    max-height: 200px;
+  }
 }

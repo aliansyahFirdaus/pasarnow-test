@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
-import { searchAction } from "../../store/slice/search-slice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { searchAction } from "../../store/slice/search-slice";
 import { fetchSearchData } from "../../store/action/search-action";
 import { fetchNews } from "../../store/action/news-action";
 
@@ -16,7 +16,7 @@ export default function Search({ setIsTyping }) {
 
   const { category } = useSelector((state) => state.search);
   
-  const [focus, setFocus] = useState(false);
+  // const [focus, setFocus] = useState(false);
   const [inputKeyword, setInputKeyword] = useState(query.get("search"));
 
   const searchSubmitHandler = (e) => {
@@ -39,7 +39,7 @@ export default function Search({ setIsTyping }) {
   };
 
   const typingHandler = (e) => setInputKeyword(e.target.value);
-  const focusHandler = (val) => setFocus(val);
+  // const focusHandler = (val) => setFocus(val);
 
   useEffect(() => {
     if (setIsTyping) {
@@ -56,17 +56,18 @@ export default function Search({ setIsTyping }) {
 
   return (
     <div className={styles["input-search"]}>
-      {!focus && (
+      {/* {!focus && (
         <i className={`fa-solid fa-magnifying-glass ${styles.icon}`} />
-      )}
+      )} */}
+      <i className={`fa-solid fa-magnifying-glass ${styles.icon}`} />
       <Stack direction="horizontal">
         <Form onSubmit={searchSubmitHandler}>
           <Form.Control
             value={inputKeyword}
             type="text"
-            className={!focus ? styles.focus : ""}
-            onFocus={() => focusHandler(true)}
-            onBlur={() => focusHandler(false)}
+            className={styles.focus}
+            // onFocus={() => focusHandler(true)}
+            // onBlur={() => focusHandler(false)}
             onChange={typingHandler}
           />
         </Form>

@@ -1,6 +1,25 @@
-.radio {
+.radio .label {
   background-color: rgb(255, 255, 255);
   /* position: -webkit-sticky;
+  position: sticky;
+  top: 0; */
+}
+
+.radio input[type="radio"]:checked + label {
+  border-bottom: 2px solid black !important;
+  background-color: transparent !important;
+}
+
+@media (min-width: 768px) {
+  .radio .label {
+    background-color: rgb(255, 255, 255);
+    /* position: -webkit-sticky;
     position: sticky;
     top: 0; */
+  }
+
+  .radio input[type="radio"]:checked + label {
+    border-bottom: 2px solid black !important;
+    background-color: transparent !important;
+  }
 }

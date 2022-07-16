@@ -1,7 +1,7 @@
 import { Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { searchAction } from "../../store/slice/search-slice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchSearchData } from "../../store/action/search-action";
 import { fetchNews } from "../../store/action/news-action";
 
@@ -13,10 +13,7 @@ import useQuery from "../../hooks/useQuery";
 export default function CategoryButton({ link }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const query = useQuery()
-
-  const { site, image } = useSelector((state) => state.search);
-  const { news } = useSelector((state) => state.news);
+  const query = useQuery();
 
   const radioButtonHandler = (e) => {
     const pathLowerCase =
@@ -26,10 +23,9 @@ export default function CategoryButton({ link }) {
     dispatch(searchAction.changeCategory(e.target.value));
 
     if (pathLowerCase === "news") {
-      if (news.length === 0) dispatch(fetchNews(query.get("search")));
+      dispatch(fetchNews(query.get("search")));
     } else {
-      if (site.length === 0 || image.length === 0)
-        dispatch(fetchSearchData(query.get("search"), pathLowerCase));
+      dispatch(fetchSearchData(query.get("search"), pathLowerCase));
     }
   };
 

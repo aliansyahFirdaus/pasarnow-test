@@ -2,16 +2,14 @@ import { Container, Stack } from "react-bootstrap";
 
 import React, { useState } from "react";
 import Search from "../components/Search/Search";
-import Header from "../components/Header/Header";
 import styles from "./Home.module.css";
 
 export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
 
   return (
-    <Container className="vh-100">
-      <Header />
-      <Stack className="text-center mt-5" gap={4}>
+    <Container className={styles.container}>
+      <Stack gap={3}>
         <div className={styles.logo}>
           <img
             alt={"google-logo"}
@@ -22,7 +20,9 @@ export default function Home() {
             }
           />
         </div>
-        <Search setIsTyping={setIsTyping} />
+        <div className={styles.search}>
+          <Search setIsTyping={setIsTyping} />
+        </div>
       </Stack>
     </Container>
   );
