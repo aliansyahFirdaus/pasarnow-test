@@ -1,4 +1,4 @@
-.container-result{
+.container-result {
   min-height: 100vh;
   padding: 0;
 }
@@ -12,11 +12,36 @@
 }
 
 .result {
-  width: 35%;
-  margin-left: 10%;
-  padding: 20px 0;
+  /* width: 35%; */
+  /* margin-left: 10%; */
+  padding: 5px 0;
 }
 
 .result-image-tab {
   padding: 20px 0;
+}
+
+@media (min-width: 768px) {
+  .container-result {
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .radio {
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+  .result {
+    width: 35%;
+    margin-left: 10%;
+    padding: 20px 0;
+  }
+
+  .result-image-tab {
+    padding: 20px 0;
+  }
 }
