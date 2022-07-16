@@ -1,30 +1,26 @@
-import { Container, Stack } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { Outlet, useLocation } from "react-router-dom";
 
 import React from "react";
 import styles from "./SearchResult.module.css";
-import Search from "../components/Search/Search";
-import HeaderSearch from "../components/Header/Header";
-import CategoryButton from "../components/CategoryButton/CategoryButton";
+import HeaderSearch from "../components/HeaderSearch/HeaderSearch";
 
-export default function SearchResult({ scrollingHandler }) {
+export default function SearchResult() {
+  const location = useLocation();
+
   return (
-    <Container
-      fluid
-      className="vh-100 p-0"
-      style={{ overflow: "scroll" }}
-      onScroll={scrollingHandler}
-    >
-      <Stack>
-        <HeaderSearch logo={true} />
-        <Search />
-      </Stack>
+    <Container fluid className={styles["container-result"]}>
+      <HeaderSearch logo={true} />
 
-      <div className={styles.radio}>
-        <CategoryButton link={true} />
+      <div
+        className={
+          location.pathname.split("/")[2] !== "image"
+            ? styles.result
+            : styles["result-image-tab"]
+        }
+      >
+        <Outlet />
       </div>
-
-      <Outlet />
     </Container>
   );
 }
