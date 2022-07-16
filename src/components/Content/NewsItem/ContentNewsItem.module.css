@@ -9,6 +9,12 @@ p {
   word-wrap: break-word;
 }
 
+.content p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .content span {
   color: rgb(170, 170, 170);
 }
@@ -18,12 +24,12 @@ p {
   font-size: 19px;
   font-weight: 500;
   text-decoration: none;
-  width: 210px;
+  width: 180px;
   max-height: 100px;
-  /* background-color: #2367d4; */
-  /* white-space: nowrap; */
   overflow: hidden;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .content .link {
@@ -39,7 +45,7 @@ p {
   align-self: flex-start;
 }
 
-@media (min-width: 768px) {  
+@media (min-width: 768px) {
   .content .title {
     width: 480px;
     max-width: 500px;
