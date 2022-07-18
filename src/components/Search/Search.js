@@ -16,10 +16,8 @@ export default function Search({ setIsTyping }) {
   const dispatch = useDispatch();
   const query = useQuery();
   const categoryCtx = useContext(CategoryContex);
-  // const location = useLocation();
 
   const [inputKeyword, setInputKeyword] = useState(query.get("search"));
-  // const [focus, setFocus] = useState(false);
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();
@@ -57,9 +55,6 @@ export default function Search({ setIsTyping }) {
 
   return (
     <div className={styles["input-search"]}>
-      {/* {!focus && (
-        <i className={`fa-solid fa-magnifying-glass ${styles.icon}`} />
-      )} */}
       <i className={`fa-solid fa-magnifying-glass ${styles.icon}`} />
       <Stack direction="horizontal">
         <Form onSubmit={searchSubmitHandler}>
@@ -67,8 +62,6 @@ export default function Search({ setIsTyping }) {
             value={inputKeyword}
             type="search"
             className={styles.focus}
-            // onFocus={() => focusHandler(true)}
-            // onBlur={() => focusHandler(false)}
             onChange={typingHandler}
           />
         </Form>
