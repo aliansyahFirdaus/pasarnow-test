@@ -29,7 +29,7 @@ export default function Search({ setIsTyping }) {
 
     pathLowerCase === "news"
       ? dispatch(fetchNews(inputKeyword))
-      : dispatch(fetchSearchData(inputKeyword, pathLowerCase));
+      : dispatch(fetchSearchData(inputKeyword));
 
     navigate(`/search/${pathLowerCase}?search=${inputKeyword}`);
   };

@@ -22,6 +22,7 @@ export default function GeneralItems({ data }) {
     dispatch(fetchSearchData(query.get("search"), "image"));
   };
 
+  console.log(data.images);
   return (
     <Stack>
       <Stack
@@ -30,20 +31,20 @@ export default function GeneralItems({ data }) {
         className={styles["image-carousel"]}
       >
         <Stack direction="horizontal" gap={1}>
-          <img src="https://logique.s3.ap-southeast-1.amazonaws.com/2020/07/apa-itu-javascript-1.jpg" />
-          <img src="https://blog.hacktiv8.com/content/images/2021/01/navbar.png" />
-          <img src="https://cdn-images-1.medium.com/max/280/1*xr9daGqNrlAudic93rerMw@2x.png" />
+          {data.images.map((img) => (
+            <img src={img.image.src} />
+          ))}
         </Stack>
-        <Link to={`image?search=${query.get("search")}`}>
+        {/* <Link to={`image?search=${query.get("search")}`}>
           <div className={styles["lihat-semua"]} onClick={seeAllHandler}>
             <div className={styles.icon}>
               <i className="fa-solid fa-angle-right" />
             </div>
             <p>Lihat semua</p>
           </div>
-        </Link>
+        </Link> */}
       </Stack>
-      {data.map((content) => (
+      {data.site.map((content) => (
         <Card>
           <ContentGeneralItem content={content} />
         </Card>
