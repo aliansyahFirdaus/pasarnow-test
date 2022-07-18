@@ -4,7 +4,8 @@ const newsSlice = createSlice({
   name: "news-slice",
   initialState: {
     news: [],
-    key: "",
+    key: "", //Firebase key
+    status: { current: "", msg: "" },
   },
   reducers: {
     getNews(state, action) {
@@ -12,6 +13,9 @@ const newsSlice = createSlice({
     },
     setKey(state, action) {
       state.key = action.payload;
+    },
+    changeStatus(state, action) {
+      state.status.current = action.payload.current;
     },
   },
 });

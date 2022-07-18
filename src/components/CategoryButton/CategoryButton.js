@@ -1,31 +1,43 @@
 import { Stack } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { searchAction } from "../../store/slice/search-slice";
-import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchSearchData } from "../../store/action/search-action";
 import { fetchNews } from "../../store/action/news-action";
+import { fetchImageData } from "../../store/action/img-action";
 
-import React from "react";
+import React, { useContext } from "react";
 import RadioButton from "../UI/RadioButton";
 import styles from "./CategoryButton.module.css";
 import useQuery from "../../hooks/useQuery";
+import CategoryContex from "../../store/contex/category-ctx";
 
-export default function CategoryButton({ link }) {
+export default function CategoryButton() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const query = useQuery();
+  const location = useLocation();
+
+  const { site } = useSelector((state) => state.search);
+  const { images } = useSelector((state) => state.image);
+  const { news } = useSelector((state) => state.news);
+
+  const categoryCtx = useContext(CategoryContex);
 
   const radioButtonHandler = (e) => {
-    const pathLowerCase =
-      e.target.value[0].toLowerCase() + e.target.value.slice(1);
-    link && navigate(`${pathLowerCase}?search=${query.get("search")}`);
+    categoryCtx.changeCategory(e.target.value);
 
-    dispatch(searchAction.changeCategory(e.target.value));
+    navigate(`${e.target.value}?search=${query.get("search")}`);
 
-    if (pathLowerCase === "news") {
-      dispatch(fetchNews(query.get("search")));
-    } else {
-      dispatch(fetchSearchData(query.get("search"), pathLowerCase));
+    switch (location.pathname.split("/")[2]) {
+      case "search":
+        if (!site) dispatch(fetchSearchData(query.get("search")));
+        break;
+      case "image":
+        if (images) dispatch(fetchImageData(query.get("search")));
+        break;
+      case "news":
+        if (news) dispatch(fetchNews(query.get("search")));
+        break;
     }
   };
 
@@ -37,20 +49,20 @@ export default function CategoryButton({ link }) {
     >
       <RadioButton
         onSelect={radioButtonHandler}
-        value="Search"
+        value="search"
         goToPath="search"
       >
         <i class="fa-solid fa-magnifying-glass me-2" /> Search
       </RadioButton>
       <RadioButton
         onSelect={radioButtonHandler}
-        value="Image"
+        value="image"
         goToPath="images"
       >
         <i class="fa-solid fa-images me-2" /> Image
       </RadioButton>
-      <RadioButton onSelect={radioButtonHandler} value="News" goToPath="news">
-      <i class="fa-solid fa-newspaper me-2" /> News
+      <RadioButton onSelect={radioButtonHandler} value="news" goToPath="news">
+        <i class="fa-solid fa-newspaper me-2" /> News
       </RadioButton>
     </Stack>
   );

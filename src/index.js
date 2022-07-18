@@ -1,5 +1,6 @@
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { CategoryProvider } from "./store/contex/category-ctx";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -20,11 +21,13 @@ TimeAgo.addLocale(ru);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <CategoryProvider>
         <App />
-      </BrowserRouter>
-    </Provider>
+      </CategoryProvider>
+    </BrowserRouter>
+  </Provider>
   // </React.StrictMode>
 );
 

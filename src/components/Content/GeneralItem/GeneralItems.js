@@ -22,7 +22,6 @@ export default function GeneralItems({ data }) {
     dispatch(fetchSearchData(query.get("search"), "image"));
   };
 
-  console.log(data.images);
   return (
     <Stack>
       <Stack
@@ -30,11 +29,15 @@ export default function GeneralItems({ data }) {
         gap={3}
         className={styles["image-carousel"]}
       >
-        <Stack direction="horizontal" gap={1}>
-          {data.images.map((img) => (
-            <img src={img.image.src} />
-          ))}
-        </Stack>
+        {data.images.status.current === "success" ? (
+          <Stack direction="horizontal" gap={1}>
+            {data?.images?.data?.map((img) => (
+              <img src={img.image.src} />
+            ))}
+          </Stack>
+        ) : (
+          <p>Loading...</p>
+        )}
         {/* <Link to={`image?search=${query.get("search")}`}>
           <div className={styles["lihat-semua"]} onClick={seeAllHandler}>
             <div className={styles.icon}>

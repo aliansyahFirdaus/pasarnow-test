@@ -1,7 +1,7 @@
-import { Container, Stack } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import React, { Fragment } from "react";
+import React from "react";
 import styles from "./HeaderSearch.module.css";
 import CategoryButton from "../CategoryButton/CategoryButton";
 import Search from "../Search/Search";

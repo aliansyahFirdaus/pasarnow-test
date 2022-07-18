@@ -8,9 +8,9 @@ import ImageItems from "./components/Content/ImageItem/ImageItems";
 import NewsItems from "./components/Content/NewsItem/NewsItems";
 
 function App() {
-  const { site, image } = useSelector((state) => state.search);
-  const { news } = useSelector((state) => state.news);
-  const { res } = useSelector((state) => state.status);
+  const { site, status: siteStatus } = useSelector((state) => state.search);
+  const { images, status: imagesStatus } = useSelector((state) => state.image);
+  const { news, status: newsStatus } = useSelector((state) => state.news);
 
   return (
     <Routes>
@@ -19,9 +19,12 @@ function App() {
         <Route
           path="search"
           element={
-            res.status === "success" ? (
+            siteStatus.current === "success" ? (
               <GeneralItems
-                data={{ site: site.results, images: image.image_results }}
+                data={{
+                  site: site,
+                  images: { data: images.slice(0, 7), status: imagesStatus },
+                }}
               />
             ) : (
               <p>Loading...</p>
@@ -31,8 +34,8 @@ function App() {
         <Route
           path="image"
           element={
-            res.status === "success" ? (
-              <ImageItems data={image.image_results} />
+            imagesStatus.current === "success" ? (
+              <ImageItems data={images} />
             ) : (
               <p>Loading...</p>
             )
@@ -41,7 +44,7 @@ function App() {
         <Route
           path="news"
           element={
-            res.status === "success" ? (
+            newsStatus.current === "success" ? (
               <NewsItems data={news} />
             ) : (
               <p>Loading...</p>

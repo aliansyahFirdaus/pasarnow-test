@@ -4,21 +4,14 @@ const searchSlice = createSlice({
   name: "search-slice",
   initialState: {
     site: [],
-    image: [],
-    category: "Search"
+    status: { current: "", msg: "" },
   },
   reducers: {
     getSiteResult(state, action) {
-      state.site = action.payload;
+      state.site = action.payload.results;
     },
-    getImageResult(state, action) {
-      state.image = action.payload;
-    },
-    saveKeyword(state, action) {
-      state.keyword = action.payload;
-    },
-    changeCategory(state, action) {
-      state.category = action.payload;
+    changeStatus(state, action) {
+      state.status.current = action.payload.current;
     },
   },
 });

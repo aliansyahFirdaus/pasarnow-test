@@ -1,41 +1,42 @@
 import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { searchAction } from "../../store/slice/search-slice";
 import { fetchSearchData } from "../../store/action/search-action";
 import { fetchNews } from "../../store/action/news-action";
+import { useContext } from "react";
 
 import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import useQuery from "../../hooks/useQuery";
+import CategoryContex from "../../store/contex/category-ctx";
 
 export default function Search({ setIsTyping }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const query = useQuery()
+  const query = useQuery();
+  const categoryCtx = useContext(CategoryContex);
+  // const location = useLocation();
 
-  const { category } = useSelector((state) => state.search);
-  
-  // const [focus, setFocus] = useState(false);
   const [inputKeyword, setInputKeyword] = useState(query.get("search"));
+  // const [focus, setFocus] = useState(false);
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();
-    const pathLowerCase = category[0].toLowerCase() + category.slice(1);
 
     if (!inputKeyword) return;
 
-    dispatch(searchAction.saveKeyword(inputKeyword));
-
-    pathLowerCase === "news"
+    categoryCtx.category === "news"
       ? dispatch(fetchNews(inputKeyword))
       : dispatch(fetchSearchData(inputKeyword));
 
-    navigate(`/search/${pathLowerCase}?search=${inputKeyword}`);
+    navigate(
+      `/search/${categoryCtx.category}?search=${inputKeyword}`
+    );
   };
 
   const changeCategoryHandler = (e) => {
-    dispatch(searchAction.changeCategory(e.target.innerHTML));
+    categoryCtx.changeCategory(e.target.innerHTML)
   };
 
   const typingHandler = (e) => setInputKeyword(e.target.value);
@@ -71,10 +72,10 @@ export default function Search({ setIsTyping }) {
             onChange={typingHandler}
           />
         </Form>
-        <DropdownButton title={category} className={styles["dropdown-menu"]}>
-          <Dropdown.Item onClick={changeCategoryHandler}>Search</Dropdown.Item>
-          <Dropdown.Item onClick={changeCategoryHandler}>Image</Dropdown.Item>
-          <Dropdown.Item onClick={changeCategoryHandler}>News</Dropdown.Item>
+        <DropdownButton title={categoryCtx.category} className={styles["dropdown-menu"]}>
+          <Dropdown.Item onClick={changeCategoryHandler}>search</Dropdown.Item>
+          <Dropdown.Item onClick={changeCategoryHandler}>image</Dropdown.Item>
+          <Dropdown.Item onClick={changeCategoryHandler}>news</Dropdown.Item>
         </DropdownButton>
       </Stack>
     </div>
