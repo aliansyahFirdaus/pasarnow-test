@@ -52,17 +52,17 @@ export default function CategoryButton() {
         value="search"
         goToPath="search"
       >
-        <i class="fa-solid fa-magnifying-glass me-2" /> Search
+        <i className="fa-solid fa-magnifying-glass me-2" /> Search
       </RadioButton>
       <RadioButton
         onSelect={radioButtonHandler}
         value="image"
         goToPath="images"
       >
-        <i class="fa-solid fa-images me-2" /> Image
+        <i className="fa-solid fa-images me-2" /> Image
       </RadioButton>
       <RadioButton onSelect={radioButtonHandler} value="news" goToPath="news">
-        <i class="fa-solid fa-newspaper me-2" /> News
+        <i className="fa-solid fa-newspaper me-2" /> News
       </RadioButton>
     </Stack>
   );

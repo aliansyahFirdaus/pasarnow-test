@@ -6,27 +6,26 @@ import ContentNewsItem from "./ContentNewsItem";
 import styles from "./NewsItems.module.css";
 import ModalAdd from "../../Modal/ModalAdd";
 
-export default function NewsItems({ data, hideBtn }) {
+export default function NewsItems({ data }) {
   const [showModal, setShowModal] = useState(false);
 
-  const showModalHandler = () => setShowModal(true);
-  const hideModalHandler = () => setShowModal(false);
+  const modalToggle = () => setShowModal((prevCondition) => !prevCondition);
 
   return (
     <Stack>
-      {data.map((content) => (
-        <Card>
-          <ContentNewsItem content={content} />
+      {data?.slice(0, 10).map((content, i) => (
+        <Card key={i}>
+          <ContentNewsItem content={content} id={i} />
         </Card>
       ))}
 
-      <div className={`${hideBtn ? "d-none" : ""} ${styles["add-btn"]}`}>
-        <Button size="lg" onClick={showModalHandler}>
+      <div className={styles["add-btn"]}>
+        <Button size="lg" onClick={modalToggle}>
           +
         </Button>
       </div>
 
-      <ModalAdd show={showModal} hide={hideModalHandler} />
+      <ModalAdd show={showModal} hide={modalToggle} />
     </Stack>
   );
 }

@@ -12,7 +12,6 @@ const imageSlice = createSlice({
     },
     changeStatus(state, action) {
       state.status.current = action.payload.current;
-      state.status.msg = action.payload.msg || "";
     },
   },
 });

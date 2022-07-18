@@ -16,15 +16,15 @@ export default function GeneralItems({ data }) {
         {data.images.status.current === "success" ? (
           <Stack direction="horizontal" gap={1}>
             {data?.images?.data?.map((img) => (
-              <img src={img.image.src} />
+              <img key={img.image.src} src={img.image.src} />
             ))}
           </Stack>
         ) : (
           <p>Loading...</p>
         )}
       </Stack>
-      {data.site.map((content) => (
-        <Card>
+      {data.site.map((content, i) => (
+        <Card key={i}>
           <ContentGeneralItem content={content} />
         </Card>
       ))}

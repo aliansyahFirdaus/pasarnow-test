@@ -4,15 +4,17 @@ const newsSlice = createSlice({
   name: "news-slice",
   initialState: {
     news: [],
-    key: "", //Firebase key
     status: { current: "", msg: "" },
   },
   reducers: {
     getNews(state, action) {
-      state.news = action.payload;
+      state.news = action.payload.entries;
     },
-    setKey(state, action) {
-      state.key = action.payload;
+    addNews(state, action) {
+      state.news.unshift(action.payload);
+    },
+    deleteNews(state, action) {
+      state.news = state.news.filter((_, i) => i !== action.payload)
     },
     changeStatus(state, action) {
       state.status.current = action.payload.current;

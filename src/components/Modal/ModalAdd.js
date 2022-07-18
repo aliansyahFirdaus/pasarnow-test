@@ -1,31 +1,26 @@
 import { Modal, Button, Form } from "react-bootstrap";
-
-import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addNews } from "../../store/action/news-action";
 
-export default function ModalAdd({ show, hide }) {
-  const { news } = useSelector((state) => state.news);
+import React, { useRef } from "react";
 
+export default function ModalAdd({ show, hide }) {
   const titleRef = useRef();
   const sourceRef = useRef();
   const urlRef = useRef();
-  const date = new Date();
+  const date = new Date().toISOString();
   const dispatch = useDispatch();
 
   const addNewsHandler = (e) => {
     e.preventDefault();
 
     dispatch(
-      addNews([
-        {
-          link: urlRef.current.value,
-          published: date,
-          source: sourceRef.current.value,
-          title: titleRef.current.value,
-        },
-        ...news,
-      ])
+      addNews({
+        link: urlRef.current.value,
+        published: date,
+        source: { title: sourceRef.current.value },
+        title: titleRef.current.value,
+      })
     );
 
     hide();

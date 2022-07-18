@@ -1,19 +1,20 @@
-import { Stack } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
+import { newsAction } from "../../../store/slice/news-slice";
+import { useDispatch } from "react-redux";
 
 import React from "react";
 import styles from "./ContentNewsItem.module.css";
 import ReactTimeAgo from "react-time-ago";
 
-export default function ContentNewsItem({ content }) {
-  // const titleTruncate = (str) => {
-  //   return str.length > 50 ? str.slice(0, 50).concat("...") : str;
-  // };
+export default function ContentNewsItem({ content, id }) {
+  const dispatch = useDispatch();
+  const deleteHandler = (id) => dispatch(newsAction.deleteNews(id));
 
   return (
     <Stack direction="horizontal" gap={3} className={styles.wrapper}>
       <Stack gap={3} className={styles.content}>
-        <a href={content.link || "#"} className={styles.link} target="_blank">
-          <i className="fa-solid fa-newspaper me-2" /> {content.source}
+        <a href={content.link} className={styles.link} target="_blank">
+          <i className="fa-solid fa-newspaper me-2" /> {content.source.title}
         </a>
         <a href={"#"} className={styles.title}>
           {content.title}
@@ -22,7 +23,19 @@ export default function ContentNewsItem({ content }) {
           <ReactTimeAgo date={new Date(content.published)} />
         </p>
       </Stack>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjsJJNkJXDf8KTp8UGExyf908fh1zgOXwC8A&usqp=CAU" />
+
+      <Button
+        className={styles["delete-btn"]}
+        onClick={(e) => {
+          e.preventDefault();
+          deleteHandler(id);
+        }}
+      >
+        <i className="fa-solid fa-trash-can" />
+      </Button>
+
+      {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjsJJNkJXDf8KTp8UGExyf908fh1zgOXwC8A&usqp=CAU" /> */}
+
     </Stack>
   );
 }

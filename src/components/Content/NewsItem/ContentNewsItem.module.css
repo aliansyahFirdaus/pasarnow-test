@@ -39,10 +39,23 @@ p {
   text-decoration: none;
 }
 
-.wrapper img {
+.wrapper .delete-btn {
   border-radius: 10px;
-  width: 105px;
-  align-self: flex-start;
+  width: 80px;
+  height: 80px !important;
+  background-color: rgb(188, 0, 0);
+  border: 0;
+  height: 150px;
+  align-self: center;
+}
+
+.wrapper .delete-btn:hover {
+  background-color: rgb(104, 0, 0);
+}
+
+.wrapper .delete-btn i {
+  color: white;
+  font-size: 3em;
 }
 
 @media (min-width: 768px) {

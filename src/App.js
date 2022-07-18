@@ -12,6 +12,7 @@ function App() {
   const { images, status: imagesStatus } = useSelector((state) => state.image);
   const { news, status: newsStatus } = useSelector((state) => state.news);
 
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
