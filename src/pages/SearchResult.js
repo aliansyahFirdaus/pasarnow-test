@@ -33,8 +33,6 @@ export default function SearchResult() {
     }
   }, []);
 
-  console.log(categoryCtx.category, "==");
-
   return (
     <Container fluid className={`${styles["container-result"]}`}>
       <HeaderSearch logo={true} />

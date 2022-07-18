@@ -8,8 +8,6 @@ const CategoryContex = React.createContext({
 export function CategoryProvider({ children }) {
   const [currentCategory, setCurrentCategory] = useState("search");
 
-  console.log(currentCategory)
-
   return (
     <CategoryContex.Provider
       value={{ category: currentCategory, changeCategory: setCurrentCategory }}

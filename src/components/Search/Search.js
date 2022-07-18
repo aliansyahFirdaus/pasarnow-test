@@ -1,7 +1,6 @@
 import { Dropdown, DropdownButton, Form, Stack } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { searchAction } from "../../store/slice/search-slice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchSearchData } from "../../store/action/search-action";
 import { fetchNews } from "../../store/action/news-action";
 import { useContext } from "react";
@@ -38,8 +37,7 @@ export default function Search({ setIsTyping }) {
   };
 
   const typingHandler = (e) => setInputKeyword(e.target.value);
-  // const focusHandler = (val) => setFocus(val);
-
+  
   useEffect(() => {
     if (setIsTyping) {
       const interval = setTimeout(() => {
